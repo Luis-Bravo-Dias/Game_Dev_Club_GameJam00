@@ -25,3 +25,10 @@ body {
 	background-image: url("./sprites/cup.png");
 	background-size: cover;
 }
+
+#board div img
+{
+	/*ducks*/
+	width: 100px;
+	height: 100px;
+}
