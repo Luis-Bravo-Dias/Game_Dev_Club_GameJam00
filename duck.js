@@ -26,16 +26,23 @@ function getRandomCup()
 	return num.toString();
 }
 
-function setDuck()
+function getRandomDuck() 
 {
-	if (cupWithDuck)
-	{
-		cupWithDuck.innerHTML = "";
-	}
-	let duck = document.createElement("img");
-	duck.src = "./sprites/duck_1.png";
+    let duckNum = Math.floor(Math.random() * 3) + 1;
+    return `./sprites/duck_${duckNum}.png`;
+}
 
-	let num = getRandomCup();
-	cupWithDuck = document.getElementById(num);
-	cupWithDuck.appendChild(duck);
+function setDuck() 
+{
+    if (cupWithDuck) 
+    {
+        cupWithDuck.innerHTML = "";
+    }
+    let duck = document.createElement("img");
+    
+    duck.src = getRandomDuck();
+
+    let num = getRandomCup();
+    cupWithDuck = document.getElementById(num);
+    cupWithDuck.appendChild(duck);
 }
