@@ -1,4 +1,5 @@
 let cupWithDuck;
+let cupWithMarvin;
 
 
 window.onload = function () {
@@ -16,7 +17,8 @@ function setGame()
 		document.getElementById("board").appendChild(tile);
 	}
 
-	setInterval(setDuck, 2000); //2000 milliseconds = 2 seconds
+	setInterval(setDuck, 1000); //1000 milliseconds = 1 seconds
+	setInterval(setMarvin, 2000);
 }
 
 function getRandomCup()
@@ -43,6 +45,31 @@ function setDuck()
     duck.src = getRandomDuck();
 
     let num = getRandomCup();
+
+	if (cupWithMarvin && cupWithMarvin.id == num)
+	{
+		return;
+	}
     cupWithDuck = document.getElementById(num);
     cupWithDuck.appendChild(duck);
+}
+
+function setMarvin()
+{
+	if (cupWithMarvin)
+	{
+		cupWithMarvin.innerHTML = "";
+	}
+
+	let marvin = document.createElement("img");
+	marvin.src = "./sprites/Marvin.png"
+
+	let num = getRandomCup();
+
+	if (cupWithDuck && cupWithDuck.id == num)
+	{
+		return;
+	}
+	cupWithMarvin = document.getElementById(num);
+	cupWithMarvin.appendChild(marvin);
 }
