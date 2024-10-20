@@ -117,8 +117,15 @@ function selectCup()
 		if (prev_id != num_id)
 		{
 			score += 10;
+
 			document.getElementById("score").innerText = score.toString();
 		}
+		let duckImage = cupWithDuck.querySelector('img');
+        if (duckImage) {
+            duckImage.style.width = '100px';
+            duckImage.style.height = '50px';
+			duckImage.style.transform = 'translateY(35px)'; //move a imagem pixeis pra baixo
+        }
 		prev_id = num_id;
 		diff = Math.min(diff + 50, 800);
 	}
