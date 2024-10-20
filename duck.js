@@ -13,6 +13,15 @@ window.onload = function () {
 	setGame();
 }
 
+const customCursor = document.createElement('div');
+customCursor.id = 'custom-cursor';
+document.body.appendChild(customCursor);
+
+document.addEventListener('mousemove', (e) => {
+    customCursor.style.left = `${e.clientX}px`;
+    customCursor.style.top = `${e.clientY}px`;
+});
+
 function setGame() 
 {
 	//set up the grid for the game board in html
@@ -122,3 +131,4 @@ function selectCup()
 		clearInterval(marvinInterval);
 	}
 }
+
