@@ -1,7 +1,9 @@
 let cupWithDuck;
 let cupWithMarvin;
 let score = 0;
+let prev_id;
 let gameOver = false;
+let	num_id
 //let diff = 0;
 
 
@@ -17,7 +19,7 @@ function setGame()
 		//Ew will create a div for each i and assignt that i as the id of that div
 		let cup = document.createElement("div");
 		cup.id = i.toString();
-		cup.addEventListener("click", selectCup);
+		cup.addEventListener("click", selectCup, num_id);
 		document.getElementById("board").appendChild(cup);
 	}
 
@@ -48,13 +50,13 @@ function setDuck()
     
     duck.src = getRandomDuck();
 
-    let num = getRandomCup();
+    num_id = getRandomCup();
 
-	if (cupWithMarvin && cupWithMarvin.id == num)
+	if (cupWithMarvin && cupWithMarvin.id == num_id)
 	{
 		return;
 	}
-    cupWithDuck = document.getElementById(num);
+    cupWithDuck = document.getElementById(num_id);
     cupWithDuck.appendChild(duck);
 }
 
@@ -82,8 +84,12 @@ function selectCup()
 {
 	if (this == cupWithDuck)
 	{
-		score += 10;
-		document.getElementById("score").innerText = score.toString();
+		if (prev_id != num_id)
+		{
+			score += 10;
+			document.getElementById("score").innerText = score.toString();
+		}
+		prev_id = num_id;
 		//diff += 100;
 	}
 	else if (this == cupWithMarvin)
