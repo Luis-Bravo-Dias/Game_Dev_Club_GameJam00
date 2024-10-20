@@ -4,7 +4,9 @@ let score = 0;
 let prev_id;
 let gameOver = false;
 let	num_id
-//let diff = 0;
+let diff = 0;
+let duckInterval;
+let marvinInterval;
 
 
 window.onload = function () {
@@ -23,8 +25,21 @@ function setGame()
 		document.getElementById("board").appendChild(cup);
 	}
 
-	setInterval(setDuck, 1000/* - diff*/); //1000 milliseconds = 1 seconds
-	setInterval(setMarvin, 2000/* - diff*/);
+	//setInterval(setDuck, 1000/* - diff*/); //1000 milliseconds = 1 seconds
+	//setInterval(setMarvin, 2000/* - diff*/);
+	startIntervals();
+}
+
+function startIntervals()
+{
+	if (duckInterval)
+		clearInterval(duckInterval);
+	if (marvinInterval)
+		clearInterval(marvinInterval);
+
+	//iniciates new intervals updating the diff
+	duckInterval = setInterval(setDuck, Math.max(200, 1000 - diff));
+	marvinInterval = setInterval(setMarvin, Math.max(500, 2000 - diff))
 }
 
 function getRandomCup()
@@ -96,11 +111,14 @@ function selectCup()
 			document.getElementById("score").innerText = score.toString();
 		}
 		prev_id = num_id;
-		//diff += 100;
+		diff = Math.min(diff + 50, 800);
 	}
 	else if (this == cupWithMarvin)
 	{
 		document.getElementById("score").innerText = "GAME OVER: " + score.toString();
 		gameOver = true;
+
+		clearInterval(duckInterval);
+		clearInterval(marvinInterval);
 	}
 }
