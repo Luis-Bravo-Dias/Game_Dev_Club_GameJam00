@@ -1,5 +1,8 @@
 let cupWithDuck;
 let cupWithMarvin;
+let score = 0;
+let gameOver = false;
+//let diff = 0;
 
 
 window.onload = function () {
@@ -12,13 +15,14 @@ function setGame()
 	for (let i = 0; i < 9; i++) //i goes from 0 to 8
 	{
 		//Ew will create a div for each i and assignt that i as the id of that div
-		let tile = document.createElement("div");
-		tile.id = i.toString();
-		document.getElementById("board").appendChild(tile);
+		let cup = document.createElement("div");
+		cup.id = i.toString();
+		cup.addEventListener("click", selectCup);
+		document.getElementById("board").appendChild(cup);
 	}
 
-	setInterval(setDuck, 1000); //1000 milliseconds = 1 seconds
-	setInterval(setMarvin, 2000);
+	setInterval(setDuck, 1000/* - diff*/); //1000 milliseconds = 1 seconds
+	setInterval(setMarvin, 2000/* - diff*/);
 }
 
 function getRandomCup()
@@ -72,4 +76,18 @@ function setMarvin()
 	}
 	cupWithMarvin = document.getElementById(num);
 	cupWithMarvin.appendChild(marvin);
+}
+
+function selectCup()
+{
+	if (this == cupWithDuck)
+	{
+		score += 10;
+		document.getElementById("score").innerText = score.toString();
+		//diff += 100;
+	}
+	else if (this == cupWithMarvin)
+	{
+		document.getElementById("score").innerText = "GAME OVER: " + score.toString();
+	}
 }
