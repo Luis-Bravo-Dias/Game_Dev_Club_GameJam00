@@ -24,7 +24,7 @@ body {
     position: absolute;
     width: 50px;  /*Defina o tamanho desejado */
     height: 50px;
-    background-image: url('./sprites/Hammer_cursor.png');
+    background-image: url('./sprites/Hammer_cursor_small.png');
     background-size: contain;
     pointer-events: none; /*Isso evita que o cursor real interfira */
     z-index: 9999;
@@ -35,7 +35,7 @@ body {
 	height: 180px;
 	background-image: url("./sprites/cup.png");
 	background-size: cover;
-	cursor: url('./sprites/Hammer_cursor.png'), default;
+	cursor: url('./sprites/Hammer_cursor_small.png'), default;
 }
 
 #board div img
