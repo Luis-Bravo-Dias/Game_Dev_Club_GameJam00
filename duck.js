@@ -42,6 +42,8 @@ function getRandomDuck()
 
 function setDuck() 
 {
+	if (gameOver)
+		return;
     if (cupWithDuck) 
     {
         cupWithDuck.innerHTML = "";
@@ -62,6 +64,8 @@ function setDuck()
 
 function setMarvin()
 {
+	if (gameOver)
+		return;
 	if (cupWithMarvin)
 	{
 		cupWithMarvin.innerHTML = "";
@@ -82,6 +86,8 @@ function setMarvin()
 
 function selectCup()
 {
+	if (gameOver)
+		return;
 	if (this == cupWithDuck)
 	{
 		if (prev_id != num_id)
@@ -95,5 +101,6 @@ function selectCup()
 	else if (this == cupWithMarvin)
 	{
 		document.getElementById("score").innerText = "GAME OVER: " + score.toString();
+		gameOver = true;
 	}
 }
